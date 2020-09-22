@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root "pages#home"
 
   get "home", to: "pages#home"
-  resources :houses
+  get "houseStatus", to: "pages#houseStatus"
+  resources :houses, except: [:new]
+  get "newHouse", to: "houses#new"
   get "signup", to: "users#new"
   post "users", to: "users#create"
   resources :users, except: [:new]

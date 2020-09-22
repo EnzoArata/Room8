@@ -1,0 +1,15 @@
+<div class = "container-fluid text-center" id="page-content">
+
+  <h1><strong>House Status </strong></h1>
+
+  <%= @user.firstName %>
+
+  <% if @user.house == nil %>
+    <p> Not associated with any houses</p>
+    <%= link_to "Create a House", newHouse_path, class: "text-black btn btn-secondary btn-large btn-outline-light"%>
+  <% else %>
+    <%= @user.house.name %>
+  <% end %>
+
+
+</div>
