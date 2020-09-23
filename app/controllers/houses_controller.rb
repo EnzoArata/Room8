@@ -1,4 +1,5 @@
 class HousesController < ApplicationController
+  before_action :set_house, only: [:destroy]
   before_action :require_user, only: [:new, :create]
   before_action :set_user, only: [:new, :create]
 
@@ -23,7 +24,16 @@ class HousesController < ApplicationController
       end
   end
 
+  def destroy
+    @house.destroy
+    redirect_to houseStatus_path
+  end
+
   private
+  def set_house
+    @house = House.find(params[:id])
+  end
+
   def user_params
     params.require(:house).permit(:name)
   end

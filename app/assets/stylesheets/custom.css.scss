@@ -2,7 +2,7 @@
 
 #page-content {
   flex: 1 0 auto;
-  background-color: lightblue;
+  background-color: #c5dae0;
 }
 
 
@@ -13,4 +13,13 @@
 html,
 body {
   height: 100%;
+}
+
+#task-container-1 {
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #3265a8;
+  font-weight: bold;
 }

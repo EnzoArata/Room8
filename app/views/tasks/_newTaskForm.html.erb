@@ -1,0 +1,60 @@
+<div class="container rounded" id="task-container-1">
+  <br>
+  <%= render "shared/errors", obj: @task %>
+  <%= form_with(model: @task, local: true ) do |f| %>
+
+
+    <div class="form-group row">
+      <%= f.label :"Title", class: "col-2 col-form-label" %><br>
+      <div class="col-10">
+        <%= f.text_field :title, class: "form-control", placeholder: "Mow Lawn" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :"Description", class: "col-2 col-form-label" %><br>
+      <div class="col-10">
+        <%= f.text_field :description, class: "form-control", placeholder: "Use Grew lawn mower and mow lawn in backyard" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :"Start Date", class: "col-2 col-form-label" %><br>
+      <div class="col-10">
+        <%= f.date_field :startDate, class: "form-control", placeholder: "4/01/2020" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :"Due Date", class: "col-2 col-form-label" %><br>
+      <div class="col-10">
+        <%= f.date_field :dueDate, class: "form-control", placeholder: "4/07/2020" %>
+      </div>
+    </div>
+
+
+    <div class="form-group row text-center">
+    <%= f.label :"Assigned User", class: "col-2 col-form-label" %><br>
+      <%= f.collection_select(:assignedUser, current_user.house.users, :id, :firstName,
+                              {prompt: "Make your selecetion from the list below"}) %>
+
+
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :Payment?, class: "col-2 col-form-label" %><br>
+      <div class="col-10">
+        <%= f.check_box :payment, class: "form-control", placeholder: "Yes" %>
+      </div>
+    </div>
+
+
+
+
+
+    <p class = "text-center">
+      <%= f.submit(@task.new_record? ?  "Create Task" : "Update Account", class: "text-black btn btn-secondary btn-large btn-outline-light") %>
+    </p>
+  <% end %>
+<br>
+</div>

@@ -7,6 +7,7 @@ class PagesController < ApplicationController
   end
 
   def houseStatus
+    @tasks = current_user.house.tasks
   end
 
   private
