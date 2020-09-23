@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_22_200251) do
+ActiveRecord::Schema.define(version: 2020_09_23_163101) do
 
   create_table "houses", force: :cascade do |t|
-    t.integer "Owner"
+    t.integer "owner"
     t.string "name"
   end
 
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2020_09_22_200251) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
     t.boolean "admin", default: false
+    t.integer "house_id"
   end
 
 end

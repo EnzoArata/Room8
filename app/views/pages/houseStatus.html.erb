@@ -2,13 +2,15 @@
 
   <h1><strong>House Status </strong></h1>
 
-  <%= @user.firstName %>
+
 
   <% if @user.house == nil %>
-    <p> Not associated with any houses</p>
+      <%= @user.firstName %> <p> you are not associated with any houses</p>
     <%= link_to "Create a House", newHouse_path, class: "text-black btn btn-secondary btn-large btn-outline-light"%>
   <% else %>
-    <%= @user.house.name %>
+
+    <p><strong><%= @user.firstName %> currently lives at <%= @user.house.name %></strong></p>
+    <%= link_to "Leave House", newHouse_path, class: "text-black btn btn-danger btn-large btn-outline-light"%>
   <% end %>
 
 

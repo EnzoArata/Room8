@@ -1,0 +1,24 @@
+<div class="container rounded" id="task-container-1">
+  <br>
+  <%= render "shared/errors", obj: @house %>
+  <%= form_with(model: @house, local: true ) do |f| %>
+
+
+    <div class="form-group row">
+      <%= f.label :"House Name", class: "col-2 col-form-label" %><br>
+      <div class="col-10">
+        <%= f.text_field :name, class: "form-control", placeholder: "Fairway House" %>
+      </div>
+    </div>
+
+
+    
+
+
+
+    <p class = "text-center">
+      <%= f.submit(@house.new_record? ?  "Create House" : "Update Account", class: "text-black btn btn-secondary btn-large btn-outline-light") %>
+    </p>
+  <% end %>
+<br>
+</div>
