@@ -3,7 +3,7 @@
   <h1><strong><%= @task.title %></strong></h1>
 
   <p><%= @task.description %></p>
-
+  <small> <i> Created <%= time_ago_in_words( @task.created_at) %> ago by <%= User.find(@task.createdBy).firstName %> </i> </small>
 
 
 </div>

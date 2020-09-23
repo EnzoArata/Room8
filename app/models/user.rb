@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  belongs_to :house
+  belongs_to :house, optional: true
   before_save {self.email = email.downcase}
 
   validates :firstName, presence: true,

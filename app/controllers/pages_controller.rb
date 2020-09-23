@@ -8,6 +8,7 @@ class PagesController < ApplicationController
 
   def houseStatus
     @tasks = current_user.house.tasks
+    @users = current_user.house.users
   end
 
   private
