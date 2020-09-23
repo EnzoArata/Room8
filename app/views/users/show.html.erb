@@ -1,0 +1,14 @@
+<div class = "container-fluid text-center" id="page-content">
+
+  <h1><strong><%= @user.firstName %> <%= @user.lastName %></strong></h1>
+
+  <% if @user.house == nil %>
+      <p>Not apart of any houses</p>
+  <% else %>
+      <p>currently lives at <%= @user.house.name %></p>
+  <% end %>
+
+
+
+
+</div>
