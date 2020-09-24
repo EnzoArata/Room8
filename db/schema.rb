@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_172104) do
+ActiveRecord::Schema.define(version: 2020_09_24_170622) do
 
   create_table "houses", force: :cascade do |t|
     t.integer "owner"
@@ -25,8 +25,9 @@ ActiveRecord::Schema.define(version: 2020_09_23_172104) do
     t.datetime "dueDate"
     t.integer "assignedUser"
     t.integer "createdBy"
-    t.boolean "payment"
     t.integer "house_id"
+    t.boolean "approved", default: false
+    t.boolean "completed", default: false
   end
 
   create_table "users", force: :cascade do |t|

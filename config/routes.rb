@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "houseStatus", to: "pages#houseStatus"
   get "addToHouse", to: "users#addToHouse"
   get "removeFromHouse", to: "users#removeFromHouse"
+  get "completeTask", to: "tasks#completeTask"
   resources :houses, except: [:new]
   get "newHouse", to: "houses#new"
   get "signup", to: "users#new"
