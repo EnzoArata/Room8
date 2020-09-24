@@ -3,7 +3,11 @@ class UsersController < ApplicationController
   before_action :define_user, only: [:addToHouse, :removeFromHouse]
 
   def show
-      @tasks = current_user.house.tasks
+      if current_user.house != nil
+        @tasks = current_user.house.tasks
+      else
+
+      end
   end
 
   def new

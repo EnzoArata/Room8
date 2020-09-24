@@ -7,8 +7,14 @@ class PagesController < ApplicationController
   end
 
   def houseStatus
-    @tasks = current_user.house.tasks
-    @users = current_user.house.users
+
+    if current_user.house != nil
+      @tasks = current_user.house.tasks
+      @users = current_user.house.users
+      @requests = current_user.house.requests
+    else
+
+    end
   end
 
   private

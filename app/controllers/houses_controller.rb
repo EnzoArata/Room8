@@ -5,7 +5,7 @@ class HousesController < ApplicationController
 
 
   def index
-    @houses = Houses.all
+    @houses = House.all
   end
 
   def new
@@ -27,6 +27,16 @@ class HousesController < ApplicationController
   def destroy
     @house.destroy
     redirect_to houseStatus_path
+  end
+
+  def addRequest
+
+    @house = House.find(params[:house])
+    @user = User.new(firstName: "Bobby", lastName: "Fwabby", email: "fwabby@example.com", password: "example123")
+    @request = Request.new(requestor_id: current_user.id)
+    @request.save
+    @house.requests << @request
+    redirect_to houses_path
   end
 
 

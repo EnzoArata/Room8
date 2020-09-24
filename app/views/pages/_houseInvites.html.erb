@@ -1,0 +1,35 @@
+<div class="row">
+  <% if current_user.house.requests.count > 0  %>
+
+
+
+
+    <div class="col-lg-5 shadow-lg p-3 mb-5 rounded" id="task-container-1">
+      <h1>Requests to join</h1>
+        <div class="dropdown">
+
+
+          </div>
+          <ul class="list-group">
+            <% @requests.each do |request| %>
+
+                <li class="list-group-item list-group-item-light text-left">
+                    <%= User.find(request.requestor_id).firstName %> <%= User.find(request.requestor_id).lastName %>
+
+                    <div class="text-right">
+
+
+                      <%= link_to "Accept Request", removeFromHouse_path(:request => request.id), class: "text-black btn btn-danger btn-large btn-outline-dark", data: {confirm:"Are you sure? This will kick the roomate from the house"} %>
+
+                    </div>
+
+                </li>
+
+            <% end %>
+          </ul>
+          <br>
+
+    </div>
+    <% else %>
+    <% end %>
+  </div>

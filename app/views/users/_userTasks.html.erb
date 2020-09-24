@@ -1,4 +1,5 @@
 <div class="row">
+  <% if current_user.house != nil %>
     <div class="col-lg-5 shadow-lg p-3 mb-5 rounded" id="task-container-1">
       <h1><%= User.find(params[:id]).firstName%>'s Tasks</h1>
         <div class="dropdown">
@@ -37,7 +38,8 @@
           <br>
 
     </div>
-
+    <% else %>
+    <% end %>
 
 
   </div>
