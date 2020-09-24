@@ -1,5 +1,5 @@
 class HousesController < ApplicationController
-  before_action :set_house, only: [:destroy]
+  before_action :set_house, only: [:destroy, :adduser]
   before_action :require_user, only: [:new, :create]
   before_action :set_user, only: [:new, :create]
 
@@ -29,6 +29,8 @@ class HousesController < ApplicationController
     redirect_to houseStatus_path
   end
 
+
+
   private
   def set_house
     @house = House.find(params[:id])
@@ -41,5 +43,7 @@ class HousesController < ApplicationController
   def set_user
     @user = User.find_by(params[:id])
   end
+
+
 
 end

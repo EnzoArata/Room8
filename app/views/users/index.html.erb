@@ -25,13 +25,20 @@
                 <li class="list-group-item list-group-item-light">
                     <%= link_to user.firstName + " " +user.lastName, user_path(user) %>
 
+                    <% if user.house == nil %>
+                      <div class="text-right">
 
-                    <div class="text-right">
+                        <%= link_to "Invite User to house", addToHouse_path(:user => user.id), class: "text-black btn btn-primary btn-large btn-outline-dark" %>
 
+                      </div>
+                    <% else %>
+                      <div class="text-right">
 
+                          <p><strong><%= user.firstName %> currently lives at <%= user.house.name %></strong></p>
 
-                    </div>
+                      </div>
 
+                    <% end %>
 
                 </li>
 
