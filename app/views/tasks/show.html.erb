@@ -13,7 +13,7 @@
     <%= link_to "Delete Task", task_path(@task), class: "text-black btn btn-danger btn-large btn-outline-dark", method: :DELETE, data: {confirm:"Are you sure? This will delete the house"} %>
   <% else %>
     <% if @task.completed && !@task.approved %>
-      <%= link_to "Approve Task", completeTask_path(:task => @task.id), class: "text-black btn btn-primary btn-large btn-outline-dark",data: {confirm:"Are you sure? Have you finished this?"} %>
+      <%= link_to "Approve Task", approveTask_path(:task => @task.id), class: "text-black btn btn-primary btn-large btn-outline-dark",data: {confirm:"Are you sure? Have you finished this?"} %>
     <% end %>
     <% if @task.completed && @task.approved  %>
       <strong>Task Complete</strong>

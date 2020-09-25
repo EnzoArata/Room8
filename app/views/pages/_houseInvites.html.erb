@@ -19,7 +19,7 @@
                     <div class="text-right">
 
 
-                      <%= link_to "Accept Request", removeFromHouse_path(:request => request.id), class: "text-black btn btn-danger btn-large btn-outline-dark", data: {confirm:"Are you sure? This will kick the roomate from the house"} %>
+                      <%= link_to "Accept Request", acceptRequest_path(:request => User.find(request.id)), class: "text-black btn btn-danger btn-large btn-outline-dark", data: {confirm:"Are you sure? This will allow this user access to the house"} %>
 
                     </div>
 

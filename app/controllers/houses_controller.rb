@@ -32,13 +32,30 @@ class HousesController < ApplicationController
   def addRequest
 
     @house = House.find(params[:house])
-    @user = User.new(firstName: "Bobby", lastName: "Fwabby", email: "fwabby@example.com", password: "example123")
+    @house.requests.each do |request|
+        if current_user == User.find(request.requestor_id)
+          flash[:notice] = "You have already sent a request to join this house"
+          redirect_to houses_path and return
+        else
+
+        end
+
+    end
     @request = Request.new(requestor_id: current_user.id)
     @request.save
     @house.requests << @request
+    flash[:notice] = "Request Sent"
     redirect_to houses_path
   end
 
+  def acceptRequest
+    @house = current_user.house
+    @request = Request.find(params[:request])
+    @user = User.find(@request.requestor_id)
+    @request.destroy
+    @house.requests.delete(@request)
+    redirect_to addToHouse_path(:user => @user.id)
+  end
 
 
   private

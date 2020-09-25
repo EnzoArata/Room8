@@ -15,6 +15,7 @@
       <%= render "houseTasks" %>
 
       <%= render "houseInvites" %>
+      <%= render "houseCompletedTasks" %>
       <%= link_to "Create House Task", newTask_path, class: "text-black btn btn-primary btn-large btn-outline-dark" %>
       <%= link_to "Invite Roomates", users_path, class: "text-black btn btn-secondary btn-large btn-outline-dark" %>
       <%= link_to "Leave House", house_path(@user.house), class: "text-black btn btn-danger btn-large btn-outline-dark", method: :DELETE, data: {confirm:"Are you sure? This will delete the house"} %>

@@ -21,33 +21,33 @@
           </div>
           <ul class="list-group">
             <% @houses.each do |house| %>
+              
+                  <li class="list-group-item list-group-item-light">
+                      <%= link_to house.name %>
 
-                <li class="list-group-item list-group-item-light">
-                    <%= link_to house.name %>
-
-
-                      <div class="text-right">
-                                                        
-                        <%= link_to "Ask to Join House", addRequest_path(:house => house.id), class: "text-black btn btn-primary btn-large btn-outline-dark" %>
-
-                      </div>
-                      <% if house.users.count > 0 %>
 
                         <div class="text-right">
 
-                            <p><strong><%= house.users.count %> people live here</strong></p>
+                          <%= link_to "Ask to Join House", addRequest_path(:house => house.id), class: "text-black btn btn-primary btn-large btn-outline-dark" %>
 
                         </div>
-                      <% else %>
-                      <div class="text-right">
+                        <% if house.users.count > 0 %>
 
-                          <p><strong>Nobody lives here</strong></p>
+                          <div class="text-right">
 
-                      </div>
-                      <% end %>
+                              <p><strong><%= house.users.count %> people live here</strong></p>
+
+                          </div>
+                        <% else %>
+                        <div class="text-right">
+
+                            <p><strong>Nobody lives here</strong></p>
+
+                        </div>
+                        <% end %>
 
 
-                </li>
+                  </li>
 
             <% end %>
           </ul>
