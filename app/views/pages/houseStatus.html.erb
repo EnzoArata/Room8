@@ -3,7 +3,7 @@
   <h1><strong>House Status </strong></h1>
 
 
-
+  
   <% if current_user.house == nil %>
       <%= current_user.firstName %> <p> you are not associated with any houses</p>
     <%= link_to "Create a House", newHouse_path, class: "text-black btn btn-secondary btn-large btn-outline-light"%>

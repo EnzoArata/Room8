@@ -1,5 +1,8 @@
 <div class="row">
+
+
   <% if current_user.house != nil  && current_user.house.tasks.count > 0 %>
+
     <div class="col-lg-5 shadow-lg p-3 mb-5 rounded" id="task-container-1">
       <h1>Unfinished Tasks</h1>
         <div class="dropdown">
@@ -23,11 +26,12 @@
                     <%= link_to task.title, task_path(task), class: "text-info" %>
                     <small>Assigned To : <%= User.find(task.assignedUser).firstName%> </small>
                     <div class="text-right">
-                      <%=  task.startDate.strftime("%B %e, %Y") %>
                       <% if logged_in? && task.assignedUser == current_user.id %>
-                        <%= link_to "Complete", task_path(task) %> -
+                        <%= link_to "Complete", task_path(task) %>
                       <% end %>
-                      <%= task.dueDate.strftime("%B %e, %Y") %>
+                      <strong>Assigned </strong><%=  task.startDate.strftime("%B %e, %Y") %>
+
+
 
 
                     </div>

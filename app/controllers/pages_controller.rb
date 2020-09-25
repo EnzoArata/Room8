@@ -9,7 +9,7 @@ class PagesController < ApplicationController
   def houseStatus
 
     if current_user.house != nil
-      @tasks = current_user.house.tasks
+      @tasks = current_user.house.tasks.reverse_order
       @users = current_user.house.users
       @requests = current_user.house.requests
     else
