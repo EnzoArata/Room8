@@ -25,12 +25,25 @@
                 <li class="list-group-item list-group-item-light">
                     <%= link_to user.firstName + " " +user.lastName, user_path(user) %>
 
+                    <% if current_user.admin && user != current_user%>
+                      <div class="text-right">
+                        <%= link_to "Delete User", user_path(user),class: "text-black btn btn-danger btn-large btn-outline-dark", method: :DELETE, data: {confirm:"Are you sure? This will delete the user"}  %>
+                      </div>
+                    <% end %>
                     <% if user.house == nil %>
+                      <% if current_user.house != nil %>
+                        <div class="text-right">
+
+                          <%= link_to "Invite User to house", addToHouse_path(:user => user.id), class: "text-black btn btn-primary btn-large btn-outline-dark" %>
+
+                        </div>
+                      <% else %>
                       <div class="text-right">
 
-                        <%= link_to "Invite User to house", addToHouse_path(:user => user.id), class: "text-black btn btn-primary btn-large btn-outline-dark" %>
+                          <p><strong><%= user.firstName %> currently doesnt live anywhere</strong></p>
 
                       </div>
+                      <% end %>
                     <% else %>
                       <div class="text-right">
 

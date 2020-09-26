@@ -18,7 +18,7 @@
           </div>
           <ul class="list-group">
             <% @tasks.each do |task| %>
-              <% if User.find(task.assignedUser) == User.find(params[:id]) %>
+              <% if (!task.completed && (task.dueDate > Time.now) )&& User.find(task.assignedUser) == User.find(params[:id]) %>
                   <li class="list-group-item list-group-item-light text-left">
                       <%= link_to task.title, task_path(task), class: "text-info" %>
                       <small>Assigned To : <%= User.find(task.assignedUser).firstName%> </small>
@@ -26,6 +26,7 @@
                         <% if logged_in? && task.assignedUser == current_user.id %>
                           <%= link_to "Complete", task_path(task) %> -
                         <% end %>
+                        <strong>Due </strong><%=  task.dueDate.strftime("%B %e, %Y") %>
 
 
 
@@ -33,6 +34,81 @@
 
                   </li>
               <% end %>
+
+              <% if (!task.completed && (task.dueDate < Time.now) )&& User.find(task.assignedUser) == User.find(params[:id]) %>
+                  <li class="list-group-item list-group-item-danger text-left">
+                      <%= link_to task.title, task_path(task), class: "text-info" %>
+                      <small>Assigned To : <%= User.find(task.assignedUser).firstName%> </small>
+                      <div class="text-right">
+                        <% if logged_in? && task.assignedUser == current_user.id %>
+                          <%= link_to "Complete", task_path(task) %> -
+                        <% end %>
+                        <strong>Due </strong><%=  task.dueDate.strftime("%B %e, %Y") %>
+
+
+
+                      </div>
+
+                  </li>
+              <% end %>
+
+            <% end %>
+          </ul>
+          <br>
+
+    </div>
+
+    <div class="col-lg-5 shadow-lg p-3 mb-5 rounded" id="task-container-1">
+      <h1>Pending Approval</h1>
+        <div class="dropdown">
+          <div class="text-right">
+            Sort By
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Default
+            </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Roomate</a>
+                <a class="dropdown-item" href="#">Date</a>
+                <a class="dropdown-item" href="#">Importance</a>
+              </div>
+            </div>
+
+          </div>
+          <ul class="list-group">
+            <% @tasks.each do |task| %>
+              <%if (!task.approved && task.completed) && ( (task.dueDate > Time.now) && User.find(task.assignedUser) == User.find(params[:id]) )%>
+                <li class="list-group-item list-group-item-light text-left">
+                    <%= link_to task.title, task_path(task), class: "text-info" %>
+                    <small>Assigned to <%= User.find(task.assignedUser).firstName%> <%= time_ago_in_words( task.startDate) %></small>
+                    <div class="text-right">
+
+                      <% if logged_in? && task.assignedUser != current_user.id %>
+                        <%= link_to "Approve", task_path(task), class: "text-black btn btn-primary btn-large btn-outline-dark" %> -
+                      <% end %>
+                      <strong>Due </strong> <%= time_ago_in_words( task.dueDate) %> ago
+
+
+                    </div>
+
+                </li>
+              <% end %>
+              <%if (!task.approved && task.completed) && ( (task.dueDate < Time.now) && User.find(task.assignedUser) == User.find(params[:id]) )%>
+                <li class="list-group-item list-group-item-danger text-left">
+                    <%= link_to task.title, task_path(task), class: "text-info" %>
+                    <small>Assigned to <%= User.find(task.assignedUser).firstName%> <%= time_ago_in_words( task.startDate) %></small>
+                    <div class="text-right">
+
+                      <% if logged_in? && task.assignedUser != current_user.id %>
+                        <%= link_to "Approve", task_path(task), class: "text-black btn btn-primary btn-large btn-outline-dark" %> -
+                      <% end %>
+                      <strong>Due </strong> <%= time_ago_in_words( task.dueDate) %> ago
+
+
+                    </div>
+
+                </li>
+              <% end %>
+
             <% end %>
           </ul>
           <br>

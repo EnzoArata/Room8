@@ -26,7 +26,7 @@ class HousesController < ApplicationController
 
   def destroy
     @house.destroy
-    redirect_to houseStatus_path
+    redirect_to houses_path
   end
 
   def addRequest

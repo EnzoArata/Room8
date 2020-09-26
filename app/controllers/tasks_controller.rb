@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :destroy]
   before_action :require_user, except: [:show]
   before_action :require_same_user, only: [:destroy]
-  before_action :define_task, only: [:completeTask, :approveTask]
+  before_action :define_task, only: [:completeTask, :approveTask, :uncompleteTask]
 
   def show
   end
@@ -30,6 +30,12 @@ class TasksController < ApplicationController
 
   def completeTask
     @task.completed = true
+    @task.save
+    redirect_to task_path(@task)
+  end
+
+  def uncompleteTask
+    @task.completed = false
     @task.save
     redirect_to task_path(@task)
   end

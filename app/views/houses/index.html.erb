@@ -21,16 +21,20 @@
           </div>
           <ul class="list-group">
             <% @houses.each do |house| %>
-              
+
                   <li class="list-group-item list-group-item-light">
-                      <%= link_to house.name %>
+                      <h2><strong><%=  house.name %></strong></h2>
 
+                      <%if current_user.house == nil %>
+                          <div class="text-right">
 
-                        <div class="text-right">
+                            <%= link_to "Ask to Join House", addRequest_path(:house => house.id), class: "text-black btn btn-primary btn-large btn-outline-dark" %>
 
-                          <%= link_to "Ask to Join House", addRequest_path(:house => house.id), class: "text-black btn btn-primary btn-large btn-outline-dark" %>
-
-                        </div>
+                          </div>
+                        <% end %>
+                        <% if current_user.admin %>
+                          <%= link_to "Delete House", house_path(house),class: "text-black btn btn-danger btn-large btn-outline-dark", method: :DELETE, data: {confirm:"Are you sure? This will delete the house"}  %>
+                        <% end %>
                         <% if house.users.count > 0 %>
 
                           <div class="text-right">

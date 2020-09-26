@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "acceptRequest", to: "houses#acceptRequest"
   get "removeFromHouse", to: "users#removeFromHouse"
   get "completeTask", to: "tasks#completeTask"
+  get "uncompleteTask", to: "tasks#uncompleteTask"
   get "approveTask", to: "tasks#approveTask"
   resources :houses, except: [:new]
   get "newHouse", to: "houses#new"

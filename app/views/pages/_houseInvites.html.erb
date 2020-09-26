@@ -13,13 +13,13 @@
           <ul class="list-group">
             <% @requests.each do |request| %>
 
-                <li class="list-group-item list-group-item-light text-left">
+                <li class="list-group-item list-group-item-warning text-left">
                     <%= User.find(request.requestor_id).firstName %> <%= User.find(request.requestor_id).lastName %>
 
                     <div class="text-right">
 
 
-                      <%= link_to "Accept Request", acceptRequest_path(:request => User.find(request.id)), class: "text-black btn btn-danger btn-large btn-outline-dark", data: {confirm:"Are you sure? This will allow this user access to the house"} %>
+                      <%= link_to "Accept Request", acceptRequest_path(:request => request.id), class: "text-black btn btn-danger btn-large btn-outline-dark", data: {confirm:"Are you sure? This will allow this user access to the house"} %>
 
                     </div>
 

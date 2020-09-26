@@ -4,6 +4,7 @@ class PagesController < ApplicationController
 
 
   def home
+    redirect_to houseStatus_path if logged_in?
   end
 
   def houseStatus

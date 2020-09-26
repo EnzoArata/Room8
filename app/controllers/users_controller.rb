@@ -1,16 +1,17 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show]
+  before_action :set_user, only: [:show, :destroy]
   before_action :define_user, only: [:addToHouse, :removeFromHouse]
 
   def show
       if current_user.house != nil
-        @tasks = current_user.house.tasks
+        @tasks = current_user.house.tasks.reverse_order
       else
 
       end
   end
 
   def new
+    redirect_to houseStatus_path if logged_in?
     @user = User.new
   end
 
@@ -44,6 +45,10 @@ class UsersController < ApplicationController
     redirect_to houseStatus_path
   end
 
+  def destroy
+    @user.destroy
+    redirect_to users_path
+  end
 
   private
   def user_params
