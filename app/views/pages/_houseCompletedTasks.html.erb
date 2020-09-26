@@ -19,15 +19,13 @@
           <ul class="list-group">
             <% @tasks.each do |task| %>
               <%if task.completed && task.approved %>
-                <li class="list-group-item list-group-item-light text-left">
+                <li class="list-group-item list-group-item-success text-left">
                     <%= link_to task.title, task_path(task), class: "text-info" %>
-                    <small>Assigned To : <%= User.find(task.assignedUser).firstName%> </small>
+                    <small>Assigned to <%= User.find(task.assignedUser).firstName%> <%= time_ago_in_words( task.startDate) %></small>
                     <div class="text-right">
-                      <%=  task.startDate.strftime("%B %e, %Y") %>
-                      <% if logged_in? && task.assignedUser == current_user.id %>
-                        <%= link_to "Complete", task_path(task) %> -
-                      <% end %>
-                      <%= task.dueDate.strftime("%B %e, %Y") %>
+                      <strong>Due </strong> <%= time_ago_in_words( task.dueDate) %> ago
+                    
+
 
 
                     </div>
@@ -42,7 +40,7 @@
 
 
 
-    
+
     <% else %>
     <% end %>
   </div>

@@ -3,7 +3,8 @@
   <h1><strong><%= @task.title %></strong></h1>
 
   <p><%= @task.description %></p>
-  <p> <strong>Assigned To:</strong><%= User.find(@task.assignedUser).firstName %></p>
+  <p> <strong>Assigned to <%= User.find(@task.assignedUser).firstName %> on <%= @task.startDate.strftime("%B %e, %Y") %> </strong></p>
+  <p> <strong>Due on <%= @task.dueDate.strftime("%B %e, %Y") %> </strong></p>
   <% if logged_in? && @task.assignedUser == current_user.id %>
     <% if !@task.completed %>
       <%= link_to "Complete Task", completeTask_path(:task => @task.id), class: "text-black btn btn-primary btn-large btn-outline-dark",data: {confirm:"Are you sure? Have you finished this?"} %>
