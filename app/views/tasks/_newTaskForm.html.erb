@@ -41,15 +41,55 @@
 
     </div>
 
-    
+    <div class="form-group row">
+      <%= f.label :"Recurring?", class: "col-2 col-form-label" %><br>
+      <div class="col-10">
+        <%= f.check_box :recurring,{}, "Yes", "No"%>
+      </div>
+    </div>
+
+
+    <div class="form-group row " id="recurring details box" style = "display:none;">
+      
+      <%= f.label :"Occurences", class: "col-2 col-form-label" %><br>
+      <div class="col-10">
+        <%= f.number_field :occurences, class: "form-control", placeholder: "2" %>
+      </div>
+
+        <%= f.submit(@task.new_record? ?  "Create Multiple Tasks" : "Update Account", class: "text-black btn btn-secondary btn-large btn-outline-light") %>
+
+    </div>
+
+    <div class="text-center"id = "createOneButton"style = "display:block;">
+      <p class = "text-center"  >
+        <%= f.submit(@task.new_record? ?  "Create Task" : "Update Account", class: "text-black btn btn-secondary btn-large btn-outline-light") %>
+      </p>
+    </div>
+
+    <script type="text/javascript">
+        var checkbox = document.getElementById('task_recurring');
+        var details_div = document.getElementById('recurring details box');
+        var createOne = document.getElementById("createOneButton")
+        checkbox.onchange = function() {
+           if(this.checked) {
+             details_div.style['display'] = 'block';
+             createOne.style['display'] = 'none';
+           } else {
+             details_div.style['display'] = 'none';
+             createOne.style['display'] = 'block';
+           }
+        };
+    </script>
 
 
 
 
 
-    <p class = "text-center">
-      <%= f.submit(@task.new_record? ?  "Create Task" : "Update Account", class: "text-black btn btn-secondary btn-large btn-outline-light") %>
-    </p>
+
+
+
+
+
   <% end %>
 <br>
 </div>

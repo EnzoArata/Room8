@@ -15,12 +15,42 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.createdBy = session[:user_id]
     @task.house = current_user.house
-    if @task.save
-      flash[:notice] = "Task was created succesfully."
-      redirect_to @task #Sends user to article show page
+
+    if @task.recurring == false
+      if @task.save
+        redirect_to @task and return
+      else
+        render 'new'
+      end
+
+
     else
-      render 'new'
+
+      if @task.save
+        @task.occurences.times do |i|
+          if i > 0
+            @task = Task.new(task_params)
+            @task.createdBy = session[:user_id]
+            @task.house = current_user.house
+            i.times do |g|
+              @task.startDate += 1.month
+              @task.dueDate += 1.month
+            end
+            @task.save
+          end
+        end
+        redirect_to houseStatus_path
+      else
+        render 'new'
+      end
+
+
     end
+
+  end
+
+  def createManyTasks
+
   end
 
   def destroy
@@ -54,7 +84,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :startDate, :dueDate, :assignedUser)
+    params.require(:task).permit(:title, :description, :startDate, :dueDate, :assignedUser, :recurring, :occurences)
   end
 
   def define_task

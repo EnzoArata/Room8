@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "addRequest", to: "houses#addRequest"
   get "acceptRequest", to: "houses#acceptRequest"
   get "removeFromHouse", to: "users#removeFromHouse"
+  get "createManyTasks", to: "tasks#createManyTasks"
   get "completeTask", to: "tasks#completeTask"
   get "uncompleteTask", to: "tasks#uncompleteTask"
   get "approveTask", to: "tasks#approveTask"
