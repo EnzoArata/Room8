@@ -11,6 +11,7 @@ class PagesController < ApplicationController
 
     if current_user.house != nil
       @tasks = current_user.house.tasks.reverse_order
+      @payments = current_user.house.payments.reverse_order
       @users = current_user.house.users
       @requests = current_user.house.requests
     else

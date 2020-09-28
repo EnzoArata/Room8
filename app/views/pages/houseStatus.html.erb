@@ -15,10 +15,16 @@
     <% if current_user.house != nil   %>
       <%= render "houseTasks" %>
 
-      <%= render "houseInvites" %>
+      <%= render "housePendingTasks" %>
+
+
       <%= render "houseCompletedTasks" %>
+      
       <%= render "upcomingTasks" %>
+      <%= render "houseInvites" %>
+      <%= render "houseRoomates" %>
       <%= link_to "Create House Task", newTask_path, class: "text-black btn btn-primary btn-large btn-outline-dark" %>
+      <%= link_to "Create House Payment", newPayment_path, class: "text-black btn btn-primary btn-large btn-outline-dark" %>
       <%= link_to "Invite Roomates", users_path, class: "text-black btn btn-secondary btn-large btn-outline-dark" %>
       <%= link_to "Leave House", removeFromHouse_path(:user => current_user.id), class: "text-black btn btn-danger btn-large btn-outline-dark",  data: {confirm:"Are you sure? This will delete the house"} %>
     <% else %>

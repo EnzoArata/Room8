@@ -1,0 +1,95 @@
+<div class="container rounded" id="payment-container-1">
+  <br>
+  <%= render "shared/errors", obj: @payment %>
+  <%= form_with(model: @payment, local: true ) do |f| %>
+
+
+    <div class="form-group row">
+      <%= f.label :"Title", class: "col-2 col-form-label" %><br>
+      <div class="col-10">
+        <%= f.text_field :title, class: "form-control", placeholder: "Monthly Rent" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :"Amount", class: "col-2 col-form-label" %><br>
+      <div class="col-10">
+        <%= f.number_field :amount, step: :any, class: "form-control", placeholder: "450.00" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :"Start Date", class: "col-2 col-form-label" %><br>
+      <div class="col-10">
+        <%= f.date_field :startDate, class: "form-control", placeholder: "4/01/2020" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :"Due Date", class: "col-2 col-form-label" %><br>
+      <div class="col-10">
+        <%= f.date_field :dueDate, class: "form-control", placeholder: "4/07/2020" %>
+      </div>
+    </div>
+
+
+    <div class="form-group row text-center">
+    <%= f.label :"Assigned User", class: "col-2 col-form-label" %><br>
+      <%= f.collection_select(:assignedUser, current_user.house.users, :id, :firstName,
+                              {prompt: "Make your selecetion from the list below"}) %>
+
+
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :"Recurring?", class: "col-2 col-form-label" %><br>
+      <div class="col-10">
+        <%= f.check_box :recurring,{}, "Yes", "No"%>
+      </div>
+    </div>
+
+
+    <div class="form-group row " id="recurring details box" style = "display:none;">
+
+      <%= f.label :"Occurences", class: "col-2 col-form-label" %><br>
+      <div class="col-10">
+        <%= f.number_field :occurences, class: "form-control", placeholder: "2" %>
+      </div>
+
+        <%= f.submit(@payment.new_record? ?  "Create Multiple payments" : "Update Account", class: "text-black btn btn-secondary btn-large btn-outline-light") %>
+
+    </div>
+
+    <div class="text-center"id = "createOneButton"style = "display:block;">
+      <p class = "text-center"  >
+        <%= f.submit(@payment.new_record? ?  "Create payment" : "Update Account", class: "text-black btn btn-secondary btn-large btn-outline-light") %>
+      </p>
+    </div>
+
+    <script type="text/javascript">
+        var checkbox = document.getElementById('payment_recurring');
+        var details_div = document.getElementById('recurring details box');
+        var createOne = document.getElementById("createOneButton")
+        checkbox.onchange = function() {
+           if(this.checked) {
+             details_div.style['display'] = 'block';
+             createOne.style['display'] = 'none';
+           } else {
+             details_div.style['display'] = 'none';
+             createOne.style['display'] = 'block';
+           }
+        };
+    </script>
+
+
+
+
+
+
+
+
+
+
+  <% end %>
+<br>
+</div>

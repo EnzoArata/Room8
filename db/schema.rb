@@ -10,11 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_28_174207) do
+ActiveRecord::Schema.define(version: 2020_09_28_201614) do
 
   create_table "houses", force: :cascade do |t|
     t.integer "owner"
     t.string "name"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string "title"
+    t.float "amount"
+    t.datetime "created_at"
+    t.datetime "startDate"
+    t.datetime "dueDate"
+    t.integer "assignedUser"
+    t.integer "createdBy"
+    t.integer "house_id"
+    t.boolean "approved", default: false
+    t.boolean "completed", default: false
+    t.boolean "recurring", default: false
+    t.integer "occurences", default: 0
   end
 
   create_table "requests", force: :cascade do |t|

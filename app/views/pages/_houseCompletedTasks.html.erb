@@ -24,7 +24,7 @@
                     <small>Assigned to <%= User.find(task.assignedUser).firstName%> <%= time_ago_in_words( task.startDate) %></small>
                     <div class="text-right">
                       <strong>Due </strong> <%= time_ago_in_words( task.dueDate) %> ago
-                    
+
 
 
 
@@ -38,6 +38,7 @@
 
     </div>
 
+    <%= render "houseCompletedPayments" %>
 
 
 

@@ -1,0 +1,64 @@
+
+  <% if current_user.house != nil  && current_user.house.payments.count > 0 %>
+  <div class="col-lg-5 shadow-lg p-3 mb-5 rounded" id="task-container-1">
+    <h1>Pending Approval</h1>
+      <div class="dropdown">
+        <div class="text-right">
+          Sort By
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Default
+          </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Roomate</a>
+              <a class="dropdown-item" href="#">Date</a>
+              <a class="dropdown-item" href="#">Importance</a>
+            </div>
+          </div>
+
+        </div>
+        <ul class="list-group">
+          <% @payments.each do |payment| %>
+            <%if (!payment.approved && payment.completed) && (payment.dueDate > Time.now) %>
+              <li class="list-group-item list-group-item-light text-left">
+                  <%= link_to payment.title, payment_path(payment), class: "text-info" %>
+                  <small>Assigned to <%= User.find(payment.assignedUser).firstName%> <%= time_ago_in_words( payment.startDate) %> from now</small>
+                  <div class="text-right">
+
+                    <% if logged_in? && payment.assignedUser != current_user.id %>
+                      <%= link_to "Approve", payment_path(payment), class: "text-black btn btn-primary btn-large btn-outline-dark" %> -
+                    <% end %>
+                    <strong>Due in</strong> <%= time_ago_in_words( payment.dueDate) %>
+
+
+                  </div>
+
+              </li>
+            <% end %>
+            <%if (!payment.approved && payment.completed) && (payment.dueDate < Time.now) %>
+              <li class="list-group-item list-group-item-danger text-left">
+                  <%= link_to payment.title, payment_path(payment), class: "text-info" %>
+                  <small>Assigned to <%= User.find(payment.assignedUser).firstName%> <%= time_ago_in_words( payment.startDate) %> </small>
+                  <div class="text-right">
+
+                    <% if logged_in? && payment.assignedUser != current_user.id %>
+                      <%= link_to "Approve", payment_path(payment), class: "text-black btn btn-primary btn-large btn-outline-dark" %> -
+                    <% end %>
+                    <strong>Due </strong> <%= time_ago_in_words( payment.dueDate) %> ago
+
+
+                  </div>
+
+              </li>
+            <% end %>
+
+          <% end %>
+        </ul>
+        <br>
+
+  </div>
+
+
+
+
+    <% else %>
+    <% end %>

@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get "completeTask", to: "tasks#completeTask"
   get "uncompleteTask", to: "tasks#uncompleteTask"
   get "approveTask", to: "tasks#approveTask"
+  get "completePayment", to: "payments#completePayment"
+  get "uncompletePayment", to: "payments#uncompletePayment"
+  get "approvePayment", to: "payments#approvePayment"
   resources :houses, except: [:new]
   get "newHouse", to: "houses#new"
   get "signup", to: "users#new"
@@ -20,6 +23,9 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
   get "newTask", to: "tasks#new"
-  post "newTask", to: "task#create"
+  post "newTask", to: "tasks#create"
+  get "newPayment", to: "payments#new"
+  post "newPayment", to: "payments#create"
   resources :tasks, except: [:new]
+  resources :payments, except: [:new]
 end

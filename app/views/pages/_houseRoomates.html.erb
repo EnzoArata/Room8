@@ -1,0 +1,27 @@
+<div class="col-lg-5 shadow-lg p-3 mb-5 rounded" id="task-container-1">
+  <h1>Roomates</h1>
+    <div class="dropdown">
+
+
+      </div>
+      <ul class="list-group">
+        <% @users.each do |user| %>
+
+            <li class="list-group-item list-group-item-light text-left">
+                <%= link_to user.firstName + " "+ user.lastName, user_path(user),class: "text-info" %>
+
+
+                <div class="text-right">
+
+
+                  <%= link_to "Kick Roomate", removeFromHouse_path(:user => user.id), class: "text-black btn btn-danger btn-large btn-outline-dark", data: {confirm:"Are you sure? This will kick the roomate from the house"} %>
+
+                </div>
+
+            </li>
+
+        <% end %>
+      </ul>
+      <br>
+
+</div>

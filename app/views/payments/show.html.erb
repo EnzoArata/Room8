@@ -1,0 +1,32 @@
+<div class = "container-fluid text-center" id="page-content">
+
+  <h1><strong><%= @payment.title %></strong></h1>
+
+  <p><%= @payment.amount %></p>
+  <p> <strong>Assigned to <%= User.find(@payment.assignedUser).firstName %> on <%= @payment.startDate.strftime("%B %e, %Y") %> </strong></p>
+  <p> <strong>Due on <%= @payment.dueDate.strftime("%B %e, %Y") %> </strong></p>
+  <% if (logged_in? && @payment.assignedUser == current_user.id) || current_user.admin %>
+    <% if !@payment.completed %>
+      <%= link_to "Complete payment", completePayment_path(:payment => @payment.id), class: "text-black btn btn-primary btn-large btn-outline-dark",data: {confirm:"Are you sure? Have you finished this?"} %>
+    <% end %>
+
+  <% end %>
+
+  <% if (logged_in? && @payment.assignedUser != current_user.id) || current_user.admin %>
+    <% if @payment.completed && !@payment.approved %>
+      <%= link_to "Approve payment", approvePayment_path(:payment => @payment.id), class: "text-black btn btn-primary btn-large btn-outline-dark",data: {confirm:"Are you sure? Is this fully complete?"} %>
+      <%= link_to "Not finished", uncompletePayment_path(:payment => @payment.id), class: "text-black btn btn-danger btn-large btn-outline-dark",data: {confirm:"Are you sure? Is this fully complete?"} %>
+    <% end %>
+    <% if @payment.completed && @payment.approved  %>
+      <strong>payment Complete</strong>
+    <% end %>
+
+  <% end %>
+  <% if logged_in? && current_user.admin %>
+    <%= link_to "Delete payment", payment_path(@payment), class: "text-black btn btn-danger btn-large btn-outline-dark", method: :DELETE, data: {confirm:"Are you sure? This will delete the house"} %>
+    <% end %>
+  <br>
+  <small> <i> Created <%= time_ago_in_words( @payment.created_at) %> ago by <%= User.find(@payment.createdBy).firstName %> </i> </small>
+
+
+</div>

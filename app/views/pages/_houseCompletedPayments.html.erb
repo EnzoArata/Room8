@@ -1,7 +1,7 @@
-<div class="row">
-  <% if current_user.house != nil  && current_user.house.tasks.count > 0 %>
+
+  <% if current_user.house != nil  && current_user.house.payments.count > 0 %>
     <div class="col-lg-5 shadow-lg p-3 mb-5 rounded" id="task-container-1">
-      <h1>Upcoming Tasks</h1>
+      <h1>Completed payments</h1>
         <div class="dropdown">
           <div class="text-right">
             Sort By
@@ -17,13 +17,13 @@
 
           </div>
           <ul class="list-group">
-            <% @tasks.take(20).each do |task| %>
-              <%if !task.completed && task.startDate > Time.now  %>
-                <li class="list-group-item list-group-item-light text-left">
-                    <%= link_to task.title, task_path(task), class: "text-info" %>
-                    <small>Assigned to <%= User.find(task.assignedUser).firstName%> <%= time_ago_in_words( task.startDate) %> from now</small>
+            <% @payments.each do |payment| %>
+              <%if payment.completed && payment.approved %>
+                <li class="list-group-item list-group-item-success text-left">
+                    <%= link_to payment.title, payment_path(payment), class: "text-info" %>
+                    <small>Assigned to <%= User.find(payment.assignedUser).firstName%> <%= time_ago_in_words( payment.startDate) %></small>
                     <div class="text-right">
-                      <strong>Due in</strong> <%= time_ago_in_words( task.dueDate) %>
+                      <strong>Due </strong> <%= time_ago_in_words( payment.dueDate) %> ago
 
 
 
@@ -37,10 +37,9 @@
           <br>
 
     </div>
-    <%= render "upcomingPayments" %>
+
 
 
 
     <% else %>
     <% end %>
-  </div>
