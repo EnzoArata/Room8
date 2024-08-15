@@ -8,13 +8,14 @@
 
 ## Additional Features
 
--Account system
-  -Each user has an account that would have information about them, such as what type of roomate they are and preferences(Nigh owl/Morning Person, Clean/Messy, Extrovert/Introvert)
-  -Landlord user type for landlords. Can integrate payments into app if they want. Can review users and can be reviewed by users
--Ability to search for other roomates on app
--Chores/Jobs
-  -Ability to assign reoccurring or non reoccurring tasks to users
-  -Can have an overseer, basically someone who can verify that task is complete(Trash is taken out/living room is vacuumed etc)
+- Account system
+  - Each user has an account that would have information about them, such as what type of roommate they are and preferences (Night owl/Morning Person, Clean/Messy, Extrovert/Introvert)
+  - Landlord user type for landlords. Can integrate payments into the app if they want. Can review users and can be reviewed by users
+- Ability to search for other roommates on the app
+- Chores/Jobs
+  - Ability to assign recurring or non-recurring tasks to users
+  - Can have an overseer, basically someone who can verify that the task is complete (Trash is taken out/living room is vacuumed, etc.)
+
 
 
 ## Flaws
